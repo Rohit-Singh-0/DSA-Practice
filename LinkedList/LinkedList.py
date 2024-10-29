@@ -85,6 +85,20 @@ class LinkedList:
         self.head.next = temp
         return True
 
+#creating the pop first method to delete the first/head element of the linked list
+    def pop_first(self):
+        #if the head is none or the linked list is empty then return none
+        if not self.head:
+            return None
+        #Create a pointer for the head
+        temp = self.head
+        #shift the head to the next node
+        self.head = self.head.next
+        #remove the first element by pointing its next attribute to none
+        temp.next = None
+        #return the popped node
+        return temp.value
+
 LL = LinkedList(1)
 LL.append(2)
 LL.append(3)
