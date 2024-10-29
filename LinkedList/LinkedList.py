@@ -99,6 +99,40 @@ class LinkedList:
         #return the popped node
         return temp.value
 
+    #Creating the get method for the linked list
+    def get(self, index):
+        #if index out of bounds return none
+        if index<1 or index>self.length:
+            return None
+        #if index is 1 then return the head
+        elif index == 1:
+            return self.head
+        #if index is equal to the length of linked list then return the tail
+        elif index == self.length:
+            return self.tail
+        #else create a pointer to head
+        temp = self.head
+        #shift the pointer to the index we need
+        for _ in range(index):
+            temp = temp.next
+        #return the node at the index
+        return temp
+
+    #Creating the set method for the linked list
+    def set(self, index,value):
+        #check if index is in the bounds if not then return none
+        if index<0 or index>self.length:
+            return None
+        #if the linked list is empty then return none
+        elif self.length == 0:
+            return None
+        #get hold of the node at the index by get method
+        node_to_change = self.get(index)
+        #change its value to the given value
+        node_to_change.value = value
+        return True
+
+
 LL = LinkedList(1)
 LL.append(2)
 LL.append(3)
@@ -106,3 +140,5 @@ LL.append(4)
 LL.print_list()
 print(LL.pop())
 LL.print_list()
+node = LL.get(3)
+print(node.value)
