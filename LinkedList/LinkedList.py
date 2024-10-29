@@ -62,6 +62,8 @@ class LinkedList:
         self.tail = temp
         #removing the last node
         temp.next = None
+        #Decreasing the length attribute by 1
+        self.length -= 1
         #returning the last removed element
         return val.value
 
@@ -71,6 +73,12 @@ class LinkedList:
         new_node = Node(value)
         #create a pointer to head
         temp = self.head
+        #case1: if head is none / empty linked list
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
+            self.length += 1
+            return True
         #now point the head to the new node/ assign the new node as the head of the linked list
         self.head= new_node
         #Now the head/new_node's next attribute is pointing to None according to the Node constructor so we have to join this node to the linked List so we will point the next attribute to temp(previous head)
