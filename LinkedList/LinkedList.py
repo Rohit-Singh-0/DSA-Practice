@@ -9,7 +9,7 @@ class Node:
 
 #Creating the LinkedList Constructor with all the LinkedList methods.
 class LinkedList:
-    #Coonstructor function for creating the LinkedList object
+    #Constructor function for creating the LinkedList object
     def __init__(self, value):
         #Creating a new node with the passed value
         new_node = Node(value)
@@ -36,16 +36,51 @@ class LinkedList:
             self.length +=1
             return True
 
+#Creating the print list method to print all the values of the Linked List
     def print_list(self):
+        #Creating a pointer for self.head named temp
         temp = self.head
+        #Case: when the Linked List is empty
         if not temp:
             return None
+        #Case: when there are elements in the linked list print all the values with the while loop
         while temp:
             print(temp.value)
             temp = temp.next
+
+#Creating the pop method to remove the last element from the Linked List
+    def pop(self):
+        #creating a pointer to the head
+        temp = self.head
+        #creating a pointer to the tail to return the value at the end
+        val = self.tail
+        #Looping through the Linked list to the element just before the tail and the range is from 1 to length-1 because the indexing was from 1
+        for _ in range(1, self.length-1):
+            #moving the temp pointer to the element just before the tail
+            temp = temp.next
+        #changing the tail pointer to same as temp
+        self.tail = temp
+        #removing the last node
+        temp.next = None
+        #returning the last removed element
+        return val.value
+
+#creating a prepend method to add an element at the start of the linked list
+    def prepend(self, value):
+        #create a new node with the given value
+        new_node = Node(value)
+        #create a pointer to head
+        temp = self.head
+        #now point the head to the new node/ assign the new node as the head of the linked list
+        self.head= new_node
+        #Now the head/new_node's next attribute is pointing to None according to the Node constructor so we have to join this node to the linked List so we will point the next attribute to temp(previous head)
+        self.head.next = temp
+        return True
 
 LL = LinkedList(1)
 LL.append(2)
 LL.append(3)
 LL.append(4)
+LL.print_list()
+print(LL.pop())
 LL.print_list()
