@@ -135,7 +135,7 @@ class DoublyLinkedList:
         elif index == 0:
             return self.prepend(value)
         # if the index equals the length of the list then update the value of tail node
-        elif index == self.length:
+        elif index == self.length-1:
             return self.append(value)
         #if the index in betweeen
         else:
@@ -150,6 +150,30 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    #Creating the remove method to remove the node at the given index
+    def remove(self, index):
+        #if index out of bounds return None
+        if index<0 or index >= self.length:
+            return None
+        #if index is 0 then use pop first method
+        if index ==0:
+            return self.pop_first()
+        #if index equals then use the pop method first
+        if index == self.length-1:
+            return self.pop()
+        #assign pointers and remove the node at the given index
+        temp = self.get(index)
+        before = temp.prev
+        after = temp.next
+        before.next = after
+        after.prev = before
+        temp.next = None
+        temp.prev = None
+        #decrease the length of the DLL by 1
+        self.length -= 1
+        #return the removed node
+        return temp
+        
 
 #Checking the Append method
 print("Creating the Doubly Linked List with a value 1.")
@@ -238,5 +262,21 @@ print("The current list is:")
 DLL.print_list()
 print("4. Checking when the index is 1 and value 7.")
 DLL.insert(1, 8)
+print("The current list is:")
+DLL.print_list()
+
+print("-------------")
+#checking the remove method
+
+print("The current list is:")
+DLL.print_list()
+print("1. Removing the index out of bounds.(index= 244)")
+print("Answer:",DLL.remove(244))
+print("2. Removing the ndoe at index = 0.")
+DLL.remove(0)
+print("The current list is:")
+DLL.print_list()
+print("3. Removing the Node at index 1.")
+DLL.remove(1)
 print("The current list is:")
 DLL.print_list()
