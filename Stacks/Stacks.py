@@ -26,6 +26,9 @@ class Stack:
 
     #method to remove the top Node from the stack
     def pop(self):
+        #endcase
+        if self.height==0:
+            return None
         temp = self.top
         self.top = temp.next
         temp.next = None
