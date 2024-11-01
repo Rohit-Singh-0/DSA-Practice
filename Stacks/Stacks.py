@@ -24,8 +24,17 @@ class Stack:
         self.top = new_node
         self.height+=1
 
+    #method to remove the top Node from the stack
+    def pop(self):
+        temp = self.top
+        self.top = temp.next
+        temp.next = None
+        self.height -= 1
+        return temp
+
 
 #check the push and print stack methods
+print("Stack after pushing 0 1 2 3 4 5 6")
 stack = Stack(0)
 stack.push(1)
 stack.push(2)
@@ -33,4 +42,10 @@ stack.push(3)
 stack.push(4)
 stack.push(5)
 stack.push(6)
+stack.print_stack()
+print("-----------------")
+#check the pop method
+print("Stack after popping 2 times.")
+stack.pop()
+stack.pop()
 stack.print_stack()
