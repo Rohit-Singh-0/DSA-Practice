@@ -20,14 +20,18 @@ class Stack:
     #method to push/add nodes at the top of the stack
     def push(self, value):
         new_node = Node(value)
-        new_node.next = self.top
-        self.top = new_node
+        if self.height==0:
+            self.top = new_node
+        else:
+            new_node.next = self.top
+            self.top = new_node
         self.height+=1
+        return True
 
     #method to remove the top Node from the stack
     def pop(self):
         #endcase
-        if self.height==0:
+        if self.height == 0:
             return None
         temp = self.top
         self.top = temp.next
